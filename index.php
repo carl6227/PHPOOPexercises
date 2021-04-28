@@ -11,9 +11,9 @@ if (isset($_POST['submit'])) {
     $myDate->date1 = $_POST['first'];
     $myDate->date2 = $_POST['second'];
 
-    $answer = strtotime($myDate->date1) - strtotime($myDate->date2);
-    $years = $years = floor($answer / (365 * 60 * 60 * 24));
-    $months = floor(($answer - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+    $answer = strtotime($myDate->date1) - strtotime($myDate->date2);//store the diffrence between dates
+    $years = $years = floor($answer / (365 * 60 * 60 * 24));// then calculate the years and store it on a variable as well as the months
+    $months = floor(($answer - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));//and days.
     $days = floor(($answer - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
 }
@@ -25,7 +25,7 @@ class selectClass{
     public $optionsArray=[];
    
 
-    function addOption($inputedOption){
+    function addOption($inputedOption){//defining a function that will push a value to an array "optionArray"
       array_push($this->optionsArray,$inputedOption);
     }
 
@@ -36,13 +36,17 @@ $addOption->addOption('option1');// adding option 1 in the select tag
 $addOption->addOption('option2'); // adding option 2 in the select tag
 $addOption->addOption($_POST['inputOption']);//adding the value of the input value to the select tag
 }
+
+
+
+
 //number3
 if(isset($_POST['emailSub'])){
 class emailCheck{
     public $email;
     public $result;
     
-    function validateEmail($email){
+    function validateEmail($email){//defining a function 
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
            $this->result= " Email address in Valid!";
           } else {
